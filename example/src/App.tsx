@@ -1,18 +1,33 @@
+import TurboLogger, { LogLevel } from '@mattermost/react-native-turbo-log';
 import * as React from 'react';
-
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from '@mattermost/react-native-turbo-log';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<string | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    setTimeout(() => {
+      console.log('hijacking console log', 'a string second time', true, 10, {
+        name: 'Someone',
+        username: 'test-account',
+      });
+      console.info('only one line');
+      console.debug('debug log');
+      console.warn('this is a warning');
+      console.error('this is an error');
+      TurboLogger.log(LogLevel.Debug, 'Log directly without console');
+      TurboLogger.getLogPaths().then((files) => {
+        setResult(files.join('\n'));
+      });
+    });
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text onPress={TurboLogger.deleteLogs}>Log files:</Text>
+      <Text selectable={true} selectionColor="blue">
+        {result}
+      </Text>
     </View>
   );
 }
@@ -20,7 +35,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: 20,
     justifyContent: 'center',
   },
   box: {
