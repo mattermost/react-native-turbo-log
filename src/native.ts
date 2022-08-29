@@ -1,5 +1,7 @@
 import { NativeModules, Platform } from 'react-native';
 
+import type { ConfigureOptions } from './types';
+
 const LINKING_ERROR =
   `The package '@mattermost/react-native-turbo-log' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -24,6 +26,25 @@ const ReactNativeTurboLog = ReactNativeTurboLogModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return ReactNativeTurboLog.multiply(a, b);
+export function configure(options: ConfigureOptions): Promise<void> {
+  const opts = {
+    dailyRolling: options.dailyRolling ?? true,
+    maximumFileSize: options.maximumFileSize ?? 1024 * 1024,
+    maximumNumberOfFiles: options.maximumNumberOfFiles ?? 5,
+    logsDirectory: options.logsDirectory,
+  };
+
+  return ReactNativeTurboLog.configure(opts);
+}
+
+export function deleteLogFiles(): Promise<boolean> {
+  return ReactNativeTurboLog.deleteLogFiles();
+}
+
+export function getLogFilePaths(): Promise<string[]> {
+  return ReactNativeTurboLog.getLogFilePaths();
+}
+
+export function write(logLevel: number, message: Array<any>) {
+  ReactNativeTurboLog.write(logLevel, message);
 }
