@@ -26,9 +26,9 @@ const ReactNativeTurboLog = ReactNativeTurboLogModule
       }
     );
 
-export function configure(options: ConfigureOptions): Promise<void> {
+export function configure(options: ConfigureOptions = {}): Promise<void> {
   const opts = {
-    dailyRolling: options.dailyRolling ?? true,
+    dailyRolling: options.dailyRolling ?? false,
     maximumFileSize: options.maximumFileSize ?? 1024 * 1024,
     maximumNumberOfFiles: options.maximumNumberOfFiles ?? 5,
     logsDirectory: options.logsDirectory,

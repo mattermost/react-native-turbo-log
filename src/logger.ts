@@ -7,13 +7,16 @@ import {
 import { ConfigureOptions, LogLevel } from './types';
 
 class TurboLoggerStatic {
-  private configured = false;
+  private logToFile = false;
 
-  async configure(options: ConfigureOptions): Promise<void> {
-    const { captureConsole = true } = options;
+  async configure(options: ConfigureOptions = {}): Promise<void> {
+    const {
+      captureConsole = true,
+      logToFile = true,
+    } = options;
 
     await configureNative(options);
-    this.configured = true;
+    this.logToFile = logToFile;
 
     if (captureConsole) {
       const c = {
@@ -65,8 +68,29 @@ class TurboLoggerStatic {
     return getLogFilePaths();
   }
 
+  setLogToFile(enabled: boolean) {
+    this.logToFile = enabled;
+  }
+
+  debug(...args: any) {
+    this.log(LogLevel.Debug, ...args);
+  }
+
+  info(...args: any) {
+    this.log(LogLevel.Info, ...args);
+  }
+
+  warn(...args: any) {
+    this.log(LogLevel.Warning, ...args);
+  }
+
+  error(...args: any) {
+    this.log(LogLevel.Error, ...args);
+  }
+  
+
   log(level: LogLevel, ...args: any) {
-    if (this.configured) {
+    if (this.logToFile) {
       write(level, args);
     }
   }

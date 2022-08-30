@@ -8,7 +8,8 @@ export enum LogLevel {
 export interface ConfigureOptions {
   captureConsole?: boolean;
   dailyRolling?: boolean;
+  logsDirectory?: string;
+  logToFile?: boolean;
   maximumFileSize?: number;
   maximumNumberOfFiles?: number;
-  logsDirectory?: string;
 }
