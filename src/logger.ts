@@ -10,10 +10,7 @@ class TurboLoggerStatic {
   private logToFile = false;
 
   async configure(options: ConfigureOptions = {}): Promise<void> {
-    const {
-      captureConsole = true,
-      logToFile = true,
-    } = options;
+    const { captureConsole = true, logToFile = true } = options;
 
     await configureNative(options);
     this.logToFile = logToFile;
@@ -87,7 +84,6 @@ class TurboLoggerStatic {
   error(...args: any) {
     this.log(LogLevel.Error, ...args);
   }
-  
 
   log(level: LogLevel, ...args: any) {
     if (this.logToFile) {
