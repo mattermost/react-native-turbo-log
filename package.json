@@ -93,6 +93,11 @@
     ]
   },
   "release-it": {
+    "hooks": {
+      "after:bump": [
+        "yarn example pods"
+      ]
+    },
     "git": {
       "commitMessage": "chore: release ${version}",
       "tagName": "v${version}"
