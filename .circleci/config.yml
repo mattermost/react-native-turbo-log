@@ -80,6 +80,27 @@ jobs:
           command: |
             yarn prepare
 
+  release:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Release to GitHub
+          command: npm run release -- --ci
+
+  publish:
+    executor: default
+    steps:
+      - attach_project
+      - run:
+          name: Authenticate with registry
+          command: |
+            echo "//registry.npmjs.org/:authToken=$NPM_TOKEN" > ~/project/.npmrc
+            echo "scope=$NPM_SCOPE"
+      - run:
+          name: Publish package
+          run: npm publish --access public
+
 workflows:
   build-and-test:
     jobs:
@@ -96,3 +117,19 @@ workflows:
       - build-package:
           requires:
             - install-dependencies
+      - release:
+          context: mattermost-rn-libraries
+          requires:
+            - build-package
+          fliters:
+            branches:
+              only: /^release-\d+$/
+      - publish:
+          context: mattermost-rn-libraries
+          requires:
+            - build-package
+          filters:
+            tags:
+              only: /^v(\d+\.)(\d+\.)(\d+)(.*)?$/
+            branches:
+              ignore: /.*/
