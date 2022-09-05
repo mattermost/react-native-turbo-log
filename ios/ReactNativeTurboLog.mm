@@ -42,6 +42,8 @@ RCT_REMAP_METHOD(configure,
     fileLogger.maximumFileSize = [maximumFileSize unsignedIntegerValue];
     [DDLog removeAllLoggers];
     [DDLog addLogger:fileLogger];
+    NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+    [DDLog addLogger:[[DDOSLogger alloc] initWithSubsystem:bundleIdentifier category:@"TurboLogger"]];
     self.fileLogger = fileLogger;
     
     resolve(nil);

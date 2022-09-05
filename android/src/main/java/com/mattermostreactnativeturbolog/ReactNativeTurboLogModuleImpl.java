@@ -1,5 +1,7 @@
 package com.mattermostreactnativeturbolog;
 
+import android.util.Log;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReadableArray;
@@ -34,6 +36,7 @@ import ch.qos.logback.core.util.FileSize;
  */
 public class ReactNativeTurboLogModuleImpl  {
   public static final String NAME = "ReactNativeTurboLog";
+  public static final String TAG = "TurboLogger";
   private static final int LOG_LEVEL_DEBUG = 0;
   private static final int LOG_LEVEL_INFO = 1;
   private static final int LOG_LEVEL_WARNING = 2;
@@ -109,15 +112,19 @@ public class ReactNativeTurboLogModuleImpl  {
     switch ((int)level) {
       case LOG_LEVEL_DEBUG:
         logger.debug(str);
+        Log.d(TAG, str);
         break;
       case LOG_LEVEL_INFO:
         logger.info(str);
+        Log.i(TAG, str);
         break;
       case LOG_LEVEL_WARNING:
         logger.warn(str);
+        Log.w(TAG, str);
         break;
       case LOG_LEVEL_ERROR:
         logger.error(str);
+        Log.e(TAG, str);
         break;
     }
   }
