@@ -80,7 +80,7 @@ Append the log message using the same formatting as `console` with the specified
 
 ## Contributing
 
-See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow.
+See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the repository and the development workflow and remember to follow the [Code Of Conduct](https://github.com/mattermost/.github/blob/master/CODE_OF_CONDUCT.md).
 
 ## License
 
