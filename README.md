@@ -53,8 +53,7 @@ Enable or disable logging messages to files
 
 ## Logging without console
 
-If you don't want to use `console` calls for file logging, you can instead access TurboLogger methods to write messages to the log files, this approach allows you to log only the
-relevant messages for your app while discarding `console` calls made by any third-party library.
+If you don't want to use `console` calls for file logging, you can instead access TurboLogger methods to write messages to the log files, this approach allows you to log only the relevant messages for your app while discarding `console` calls made by any third-party library.
 
 #### TurboLogger.debug(...args: any)
 
@@ -85,7 +84,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 ## License
 
-MIT
+[MIT License](LICENSE)
 
 ---
 
