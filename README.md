@@ -1,4 +1,4 @@
-# [@mattermost](https://github.com/mattermost)/[react-native-turbo-log](https://github.com/mattermost/react-native-turbo-log)
+# @mattermost/react-native-turbo-log
 File logger for React Native (TurboModules) with configurable rolling policy
 
 ## Installation
