@@ -88,6 +88,20 @@ class TurboLoggerStatic {
   log(level: LogLevel, ...args: any) {
     if (this.logToFile) {
       write(level, args);
+      this.addBreadcrumb(level, ...args);
+    }
+  }
+
+  private addBreadcrumb(level: LogLevel, ...args: any) {
+    const Sentry = require('@sentry/react-native');
+    const SentryLevels = ['debug', 'info', 'warning', 'error'];
+
+    if (Sentry && level > 1) {
+      Sentry.addBreadcrumb({
+        level: SentryLevels[level],
+        message: args.join(','),
+        type: 'turbo-log',
+      });
     }
   }
 }
