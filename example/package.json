@@ -8,23 +8,16 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "pods": "pod-install --quiet",
-    "postinstall": "patch-package"
+    "postinstall": "npm run pods"
   },
   "dependencies": {
     "react": "18.2.0",
-    "react-native": "0.69.5"
+    "react-native": "0.71.1"
   },
   "devDependencies": {
-    "@babel/core": "7.18.13",
-    "@babel/runtime": "7.18.9",
-    "babel-plugin-module-resolver": "4.1.0",
-    "metro-react-native-babel-preset": "0.72.1",
-    "patch-package": "6.4.7",
-    "postinstall-postinstall": "2.1.0"
-  },
-  "overrides": {
-    "react-native": {
-      "react": "^18.2.0"
-    }
+    "@babel/core": "7.20.12",
+    "@babel/runtime": "7.20.7",
+    "babel-plugin-module-resolver": "5.0.0",
+    "metro-react-native-babel-preset": "0.74.0"
   }
 }

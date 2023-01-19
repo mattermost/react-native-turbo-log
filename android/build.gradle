@@ -44,11 +44,6 @@ android {
   lintOptions {
     disable 'GradleCompatible'
   }
-
-  compileOptions {
-    sourceCompatibility JavaVersion.VERSION_1_8
-    targetCompatibility JavaVersion.VERSION_1_8
-  }
   sourceSets {
     main {
       if (isNewArchitectureEnabled()) {
@@ -134,8 +129,8 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+" // From node_modules
-  implementation 'org.slf4j:slf4j-api:1.7.33'
-  implementation 'com.github.tony19:logback-android:2.0.0'
+  implementation 'org.slf4j:slf4j-api:1.7.36'
+  implementation 'com.github.tony19:logback-android:2.0.1'
 }
 
 if (isNewArchitectureEnabled()) {
