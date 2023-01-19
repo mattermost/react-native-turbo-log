@@ -80,7 +80,7 @@ PODS:
     - hermes-engine/Pre-built (= 0.71.0)
   - hermes-engine/Pre-built (0.71.0)
   - libevent (2.1.12)
-  - mattermost-react-native-turbo-log (0.2.1):
+  - mattermost-react-native-turbo-log (0.2.2):
     - CocoaLumberjack
     - RCT-Folly (= 2021.07.22.00)
     - React-Core
@@ -909,7 +909,7 @@ SPEC CHECKSUMS:
   glog: 3d02b25ca00c2d456734d0bcff864cbc62f6ae1a
   hermes-engine: f6e715aa6c8bd38de6c13bc85e07b0a337edaa89
   libevent: 4049cae6c81cdb3654a443be001fb9bdceff7913
-  mattermost-react-native-turbo-log: fc08709f46239cbf65b83281004d2b73cd326371
+  mattermost-react-native-turbo-log: 3c56c4e6e1d706b70d652e5509d1254eef914153
   OpenSSL-Universal: ebc357f1e6bc71fa463ccb2fe676756aff50e88c
   RCT-Folly: 424b8c9a7a0b9ab2886ffe9c3b041ef628fd4fb1
   RCTRequired: fd4d923b964658aa0c4091a32c8b2004c6d9e3a6
