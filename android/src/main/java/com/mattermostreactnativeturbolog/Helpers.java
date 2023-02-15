@@ -17,6 +17,7 @@ public class Helpers {
       switch (readableMap.getType(key)) {
         case Null:
           object.put(key, JSONObject.NULL);
+          break;
         case Boolean:
           object.put(key, readableMap.getBoolean(key));
           break;
