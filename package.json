@@ -27,8 +27,8 @@
     "lint": "eslint \"**/*.{js,ts,tsx}\"",
     "prepare": "bob build",
     "release": "release-it",
-    "example": "yarn --cwd example",
-    "bootstrap": "yarn example && yarn && yarn example pods"
+    "example": "npm run --prefix example",
+    "bootstrap": "npm i --prexix example && npm run example pods"
   },
   "keywords": [
     "react-native",
@@ -88,7 +88,7 @@
   "release-it": {
     "hooks": {
       "after:bump": [
-        "yarn example pods"
+        "npm run example pods"
       ]
     },
     "git": {
@@ -160,5 +160,8 @@
         "jsSrcsDir": "src"
       }
     ]
+  },
+  "dependencies": {
+    "example": "^0.0.0"
   }
 }
