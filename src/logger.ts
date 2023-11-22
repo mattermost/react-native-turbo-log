@@ -4,7 +4,7 @@ import {
   getLogFilePaths,
   write,
 } from './native';
-import { ConfigureOptions, LogLevel } from './types';
+import { type ConfigureOptions, LogLevel } from './types';
 
 class TurboLoggerStatic {
   private logToFile = false;
@@ -20,40 +20,61 @@ class TurboLoggerStatic {
         ...global.console,
       };
 
-      global.console.debug = (...args) => {
-        this.log(LogLevel.Debug, ...args);
-        if (__DEV__) {
-          c.debug(...args);
-        }
+      const console = {
+        ...c,
       };
 
-      global.console.log = (...args) => {
-        this.log(LogLevel.Info, ...args);
-        if (__DEV__) {
-          c.log(...args);
-        }
-      };
+      Object.defineProperty(console, 'debug', {
+        value: (...args: any) => {
+          this.log(LogLevel.Debug, ...args);
+          if (__DEV__) {
+            c.debug(...args);
+          }
+        },
+        writable: false,
+      });
 
-      global.console.info = (...args) => {
-        this.log(LogLevel.Info, ...args);
-        if (__DEV__) {
-          c.info(...args);
-        }
-      };
+      Object.defineProperty(console, 'log', {
+        value: (...args: any) => {
+          this.log(LogLevel.Info, ...args);
+          if (__DEV__) {
+            c.log(...args);
+          }
+        },
+        writable: false,
+      });
 
-      global.console.warn = (...args) => {
-        this.log(LogLevel.Warning, ...args);
-        if (__DEV__) {
-          c.warn(...args);
-        }
-      };
+      Object.defineProperty(console, 'info', {
+        value: (...args: any) => {
+          this.log(LogLevel.Info, ...args);
+          if (__DEV__) {
+            c.info(...args);
+          }
+        },
+        writable: false,
+      });
 
-      global.console.error = (...args) => {
-        this.log(LogLevel.Error, ...args);
-        if (__DEV__) {
-          c.error(...args);
-        }
-      };
+      Object.defineProperty(console, 'warn', {
+        value: (...args: any) => {
+          this.log(LogLevel.Warning, ...args);
+          if (__DEV__) {
+            c.warn(...args);
+          }
+        },
+        writable: false,
+      });
+
+      Object.defineProperty(console, 'error', {
+        value: (...args: any) => {
+          this.log(LogLevel.Error, ...args);
+          if (__DEV__) {
+            c.error(...args);
+          }
+        },
+        writable: false,
+      });
+
+      global.console = console;
     }
   }
 
