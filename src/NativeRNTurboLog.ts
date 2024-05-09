@@ -1,6 +1,6 @@
 import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
-import type { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import type { Double, Int32 } from 'react-native/Libraries/Types/CodegenTypes';
 
 export interface Spec extends TurboModule {
   configure(options: {
@@ -11,7 +11,7 @@ export interface Spec extends TurboModule {
   }): Promise<void>;
   deleteLogFiles(): Promise<boolean>;
   getLogFilePaths(): Promise<string[]>;
-  write(logLevel: Int32, message: Array<any>): void;
+  write(logLevel: Double, message: Array<any>): void;
 }
 
 export default TurboModuleRegistry.getEnforcing<Spec>('RNTurboLog');

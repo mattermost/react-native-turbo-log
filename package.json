@@ -75,7 +75,10 @@
   "codegenConfig": {
     "name": "RNTurboLogSpec",
     "type": "modules",
-    "jsSrcsDir": "./src"
+    "jsSrcsDir": "./src",
+    "android": {
+      "javaPackageName": "com.mattermost.turbolog"
+    }
   },
   "jest": {
     "preset": "react-native",
