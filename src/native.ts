@@ -1,30 +1,6 @@
-import { NativeModules, Platform } from 'react-native';
-
 import type { ConfigureOptions } from './types';
 
-const LINKING_ERROR =
-  `The package '@mattermost/react-native-turbo-log' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
-
-// @ts-expect-error
-const isTurboModuleEnabled = global.__turboModuleProxy != null;
-
-const ReactNativeTurboLogModule = isTurboModuleEnabled
-  ? require('./NativeReactNativeTurboLog').default
-  : NativeModules.ReactNativeTurboLog;
-
-const ReactNativeTurboLog = ReactNativeTurboLogModule
-  ? ReactNativeTurboLogModule
-  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+const RNTurboLog = require('./NativeRNTurboLog').default;
 
 export function configure(options: ConfigureOptions = {}): Promise<void> {
   const opts = {
@@ -34,17 +10,17 @@ export function configure(options: ConfigureOptions = {}): Promise<void> {
     logsDirectory: options.logsDirectory,
   };
 
-  return ReactNativeTurboLog.configure(opts);
+  return RNTurboLog.configure(opts);
 }
 
 export function deleteLogFiles(): Promise<boolean> {
-  return ReactNativeTurboLog.deleteLogFiles();
+  return RNTurboLog.deleteLogFiles();
 }
 
 export function getLogFilePaths(): Promise<string[]> {
-  return ReactNativeTurboLog.getLogFilePaths();
+  return RNTurboLog.getLogFilePaths();
 }
 
 export function write(logLevel: number, message: Array<any>) {
-  ReactNativeTurboLog.write(logLevel, message);
+  RNTurboLog.write(logLevel, message);
 }

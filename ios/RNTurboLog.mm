@@ -1,8 +1,4 @@
-#import "ReactNativeTurboLog.h"
-
-#ifdef RCT_NEW_ARCH_ENABLED
-#import "RNReactNativeTurboLogSpec.h"
-#endif
+#import "RNTurboLog.h"
 
 #import <CocoaLumberjack/CocoaLumberjack.h>
 #import "TurboLogFormatter.h"
@@ -16,18 +12,55 @@ enum LogLevel {
 
 static const DDLogLevel ddLogLevel = DDLogLevelDebug;
 
-@interface ReactNativeTurboLog()
+@interface RNTurboLog()
 @property (nonatomic, strong) DDFileLogger* fileLogger;
 -(NSString *) format:(NSArray*) messageArray;
 @end
 
-@implementation ReactNativeTurboLog
+@implementation RNTurboLog
 RCT_EXPORT_MODULE()
 
 RCT_REMAP_METHOD(configure,
                  configureWithOptions:(NSDictionary *)options
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject) {
+    [self setConfig:options withResolver:resolve withRejecter:reject];
+}
+
+RCT_REMAP_METHOD(deleteLogFiles, resolver:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+    [self deleteLogFiles:resolve reject:reject];
+}
+
+RCT_REMAP_METHOD(getLogFilePaths, withResolver:(RCTPromiseResolveBlock)resolve withRejecter:(RCTPromiseRejectBlock)reject) {
+    [self getLogFilePaths:resolve reject:reject];
+}
+
+RCT_REMAP_METHOD(write, logLevel:(NSNumber* _Nonnull)logLevel message:(NSArray*)message) {
+    [self write:logLevel.integerValue message:message];
+}
+
+#if RCT_NEW_ARCH_ENABLED
+- (NSNumber *)processNumberValue:(std::optional<bool>)optionalBoolValue {
+    // Use the boolean value
+    if (optionalBoolValue.has_value()) {
+        return [NSNumber numberWithBool:optionalBoolValue.value()];
+    }
+
+    return 0;
+}
+
+- (void)configure:(JS::NativeRNTurboLog::SpecConfigureOptions &)options resolve:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject {
+    id sharedKeySet = [NSDictionary sharedKeySetForKeys:@[@"dailyRolling", @"maximumFileSize", @"maximumNumberOfFiles", @"logsDirectory"]]; // returns NSSharedKeySet
+    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithSharedKeySet:sharedKeySet];
+    dict[@"dailyRolling"] = [self processNumberValue:options.dailyRolling()];
+    dict[@"maximumFileSize"] = [self processNumberValue:options.maximumFileSize()];
+    dict[@"maximumNumberOfFiles"] = [self processNumberValue:options.maximumNumberOfFiles()];
+    dict[@"logsDirectory"] = options.logsDirectory();
+    [self setConfig:dict withResolver:resolve withRejecter:reject];
+}
+#endif
+
+-(void)setConfig:(NSDictionary *)options withResolver:(RCTPromiseResolveBlock)resolve withRejecter:(RCTPromiseRejectBlock)reject {
     NSNumber* dailyRolling = options[@"dailyRolling"];
     NSNumber* maximumFileSize = options[@"maximumFileSize"];
     NSNumber* maximumNumberOfFiles = options[@"maximumNumberOfFiles"];
@@ -49,7 +82,7 @@ RCT_REMAP_METHOD(configure,
     resolve(nil);
 }
 
-RCT_EXPORT_METHOD(deleteLogFiles:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+- (void)deleteLogFiles:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject { 
     [self.fileLogger rollLogFileWithCompletionBlock:^{
         NSArray<DDLogFileInfo*> *files = [self.fileLogger.logFileManager unsortedLogFileInfos];
         for (DDLogFileInfo* file in files) {
@@ -60,13 +93,14 @@ RCT_EXPORT_METHOD(deleteLogFiles:(RCTPromiseResolveBlock)resolve rejecter:(RCTPr
     }];
 }
 
-RCT_EXPORT_METHOD(getLogFilePaths:(RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+
+- (void)getLogFilePaths:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject { 
     resolve(self.fileLogger.logFileManager.sortedLogFilePaths);
 }
 
-RCT_EXPORT_METHOD(write:(NSNumber* _Nonnull)level message:(NSArray*)message) {
+- (void)write:(NSInteger)logLevel message:(NSArray *)message { 
     NSString *str =  [self format:message];
-    switch (level.integerValue) {
+    switch (logLevel) {
         case LOG_LEVEL_DEBUG:
             DDLogDebug(@"%@", str);
             break;
@@ -82,6 +116,8 @@ RCT_EXPORT_METHOD(write:(NSNumber* _Nonnull)level message:(NSArray*)message) {
     }
 }
 
+
+
 -(NSString *) format:(NSArray*) messageArray {
     NSString *str = @"";
     for (id object in messageArray) {
@@ -96,7 +132,7 @@ RCT_EXPORT_METHOD(write:(NSNumber* _Nonnull)level message:(NSArray*)message) {
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
     (const facebook::react::ObjCTurboModule::InitParams &)params
 {
-    return std::make_shared<facebook::react::NativeReactNativeTurboLogSpecJSI>(params);
+    return std::make_shared<facebook::react::NativeRNTurboLogSpecJSI>(params);
 }
 #endif
 
