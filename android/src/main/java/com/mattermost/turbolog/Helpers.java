@@ -1,4 +1,4 @@
-package com.mattermostreactnativeturbolog;
+package com.mattermost.turbolog;
 
 import com.facebook.react.bridge.ReadableArray;
 import com.facebook.react.bridge.ReadableMap;
