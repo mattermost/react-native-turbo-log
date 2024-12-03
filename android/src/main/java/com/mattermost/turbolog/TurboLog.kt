@@ -98,6 +98,8 @@ class TurboLog {
     fun d(tag: String, message: String) {
       if (configureOptions != null) {
         logger.debug("$tag: $message")
+      } else {
+        Log.w("TurboLog", "Used before configured")
       }
       Log.d(tag, message)
     }
@@ -105,6 +107,8 @@ class TurboLog {
     fun e(tag: String, message: String) {
       if (configureOptions != null) {
         logger.error("$tag: $message")
+      } else {
+        Log.w("TurboLog", "Used before configured")
       }
       Log.e(tag, message)
     }
@@ -112,6 +116,8 @@ class TurboLog {
     fun i(tag: String, message: String) {
       if (configureOptions != null) {
         logger.info("$tag: $message")
+      } else {
+        Log.w("TurboLog", "Used before configured")
       }
       Log.i(tag, message)
     }
@@ -119,6 +125,8 @@ class TurboLog {
     fun w(tag: String, message: String) {
       if (configureOptions != null) {
         logger.warn("$tag: $message")
+      } else {
+        Log.w("TurboLog", "Used before configured")
       }
       Log.w(tag, message)
     }
