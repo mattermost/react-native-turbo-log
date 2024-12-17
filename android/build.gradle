@@ -55,6 +55,6 @@ repositories {
 
 dependencies {
   implementation 'com.facebook.react:react-native'
-  implementation 'org.slf4j:slf4j-api:2.0.13'
+  implementation 'org.slf4j:slf4j-api:2.0.16'
   implementation 'com.github.tony19:logback-android:3.0.0'
 }
