@@ -10,7 +10,7 @@ PODS:
   - hermes-engine (0.76.5):
     - hermes-engine/Pre-built (= 0.76.5)
   - hermes-engine/Pre-built (0.76.5)
-  - mattermost-react-native-turbo-log (0.4.0):
+  - mattermost-react-native-turbo-log (0.5.0):
     - CocoaLumberjack (~> 3.8.5)
     - DoubleConversion
     - glog
@@ -1749,7 +1749,7 @@ SPEC CHECKSUMS:
   fmt: 10c6e61f4be25dc963c36bd73fc7b1705fe975be
   glog: 08b301085f15bcbb6ff8632a8ebaf239aae04e6a
   hermes-engine: 06a9c6900587420b90accc394199527c64259db4
-  mattermost-react-native-turbo-log: 2c4ed103338a969713ee50b2b1f4a425a3e6eefd
+  mattermost-react-native-turbo-log: f477643f67697a0d323badbd00f94213860b2124
   RCT-Folly: 84578c8756030547307e4572ab1947de1685c599
   RCTDeprecation: fb7d408617e25d7f537940000d766d60149c5fea
   RCTRequired: 9aaf0ffcc1f41f0c671af863970ef25c422a9920
