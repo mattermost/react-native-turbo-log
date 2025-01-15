@@ -7,6 +7,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   self.moduleName = @"main";
+  [TurboLogSwift configure:@{@"dailyRolling": @NO, @"maximumFileSize": @(1024*1024), @"maximumNumberOfFiles": @2}];
+  [TurboLogSwift i:@[@"Test"]];
   // You can add your custom initial props in the dictionary below.
   // They will be passed down to the ViewController used by React Native.
   self.initialProps = @{};
