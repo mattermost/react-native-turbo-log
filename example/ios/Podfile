@@ -16,6 +16,8 @@ end
 
 target 'ReactNativeTurboLogExample' do
   config = use_native_modules!
+  
+  pod 'TurboLogIOSNative', :git => 'https://github.com/larkox/react-native-turbo-log-ios-native.git'
 
   use_react_native!(
     :path => config[:reactNativePath],
