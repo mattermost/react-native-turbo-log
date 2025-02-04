@@ -1541,6 +1541,7 @@ PODS:
 
 DEPENDENCIES:
   - boost (from `../node_modules/react-native/third-party-podspecs/boost.podspec`)
+  - CocoaLumberjack
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - fmt (from `../node_modules/react-native/third-party-podspecs/fmt.podspec`)
@@ -1748,7 +1749,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   TurboLogIOSNative:
-    :commit: 633116302b5c6ac5dd9143733c9455ccf112f53b
+    :commit: 44fa9abe32a74ce6206d6237c639e6382495d210
     :git: https://github.com/larkox/react-native-turbo-log-ios-native.git
 
 SPEC CHECKSUMS:
@@ -1817,9 +1818,9 @@ SPEC CHECKSUMS:
   ReactCodegen: daa13d9e48c9bdb1daac4bd694b9dd54e06681df
   ReactCommon: a6b87a7591591f7a52d9c0fec3aa05e0620d5dd3
   SocketRocket: d4aabe649be1e368d1318fdf28a022d714d65748
-  TurboLogIOSNative: 810d412d845d7a239e152deb2e6ed68b9f44f717
+  TurboLogIOSNative: 45f6d20ba17ee39f8106e718e93baf43b2d76b7b
   Yoga: fcc198acd4a55599b3468cfb6ebc526baff5f06e
 
-PODFILE CHECKSUM: 1ba0d6dcf779a0596736246f2e0c9796932a4634
+PODFILE CHECKSUM: 74226e1ceda83e8c3f3b29d0efb884bb4ea8f0ca
 
 COCOAPODS: 1.15.2

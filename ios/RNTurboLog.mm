@@ -1,7 +1,5 @@
 #import "RNTurboLog.h"
 
-#import <CocoaLumberjack/CocoaLumberjack.h>
-#import "TurboLogFormatter.h"
 #import <TurboLogIOSNative/TurboLog.h>
 
 @implementation RNTurboLog

@@ -13,7 +13,7 @@
   self.initialProps = @{};
   
   NSError *error = nil;
-  [TurboLog configureWithDailyRolling:FALSE maximumFileSize:1000 maximumNumberOfFiles:2 logsDirectory:@"" error:&error];
+  [TurboLog configureWithDailyRolling:FALSE maximumFileSize:1000 maximumNumberOfFiles:2 logsDirectory:@"" logsFilename:nil error:&error];
   if (error) {
     NSLog(@"Failed to configure TurboLog: %@", error.localizedDescription);
   }
