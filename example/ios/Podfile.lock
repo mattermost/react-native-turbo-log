@@ -1606,7 +1606,7 @@ DEPENDENCIES:
   - React-utils (from `../node_modules/react-native/ReactCommon/react/utils`)
   - ReactCodegen (from `build/generated/ios`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
-  - TurboLogIOSNative (from `https://github.com/larkox/react-native-turbo-log-ios-native.git`)
+  - TurboLogIOSNative (from `https://github.com/mattermost/react-native-turbo-log-ios-native.git`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
@@ -1743,14 +1743,14 @@ EXTERNAL SOURCES:
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
   TurboLogIOSNative:
-    :git: https://github.com/larkox/react-native-turbo-log-ios-native.git
+    :git: https://github.com/mattermost/react-native-turbo-log-ios-native.git
   Yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 CHECKOUT OPTIONS:
   TurboLogIOSNative:
     :commit: 44fa9abe32a74ce6206d6237c639e6382495d210
-    :git: https://github.com/larkox/react-native-turbo-log-ios-native.git
+    :git: https://github.com/mattermost/react-native-turbo-log-ios-native.git
 
 SPEC CHECKSUMS:
   boost: 1dca942403ed9342f98334bf4c3621f011aa7946

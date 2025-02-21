@@ -18,7 +18,7 @@ target 'ReactNativeTurboLogExample' do
   config = use_native_modules!
   
   pod 'CocoaLumberjack', :modular_headers => true
-  pod 'TurboLogIOSNative', :git => 'https://github.com/larkox/react-native-turbo-log-ios-native.git', :modular_headers => true
+  pod 'TurboLogIOSNative', :git => 'https://github.com/mattermost/react-native-turbo-log-ios-native.git', :modular_headers => true
 
   use_react_native!(
     :path => config[:reactNativePath],
