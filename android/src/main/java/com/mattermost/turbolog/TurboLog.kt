@@ -81,7 +81,7 @@ class TurboLog {
       val encoder = PatternLayoutEncoder()
       encoder.context = loggerContext
       encoder.charset = StandardCharsets.UTF_8
-      encoder.pattern = "%d{yyyy/MM/dd HH:mm:ss.SSS} %-5level %msg%n"
+      encoder.pattern = "%d{yyyy/MM/dd HH:mm:ss.SSS Z} %-5level %msg%n"
       encoder.start()
 
       rollingFileAppender.encoder = encoder
